@@ -30,7 +30,8 @@ export class ValveAccessory {
 
     this.service.getCharacteristic(this.platform.Characteristic.InUse);
 
-    this.service.getCharacteristic(this.platform.Characteristic.ValveType);
+    this.service.getCharacteristic(this.platform.Characteristic.ValveType)
+      .onGet(this.handleValveTypeGet.bind(this));
   }
 
   handleActiveSet(value) {
@@ -48,5 +49,9 @@ export class ValveAccessory {
         this.log.debug('Triggered SET Active:', value);
       });
     }
+  }
+
+  handleValveTypeGet() {
+    return this.platform.Characteristic.ValveType.IRRIGATION;
   }
 }
