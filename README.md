@@ -7,7 +7,7 @@
 This is a plugin for Hozelock Cloud Controller.
 
 # Support for
-1.0.1
+1.0.2
 * Turn on and off water
 
 # Default config

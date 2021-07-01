@@ -54,19 +54,11 @@ export class HozelockHomebridgePlatform implements DynamicPlatformPlugin {
             valveService.updateCharacteristic(this.Characteristic.InUse, controller.isWatering);
           }
 
-          // if (controller.currentWateringEvent!==null) {
-          //   valveService.updateCharacteristic(this.Characteristic.Active, true);
-
-          //   if (this.config['Debug'] as boolean) {
-          //     this.log.info('Update isActive for ' + device.hub.name + ': '+true);
-          //   }
-          // } else {
           valveService.updateCharacteristic(this.Characteristic.Active, controller.hasWaterNowEvent);
 
           if (this.config['Debug'] as boolean) {
             this.log.info('Update isActive for ' + device.hub.name + ': '+controller.hasWaterNowEvent);
           }
-          // }
         }
       }
     });

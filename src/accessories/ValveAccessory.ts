@@ -38,6 +38,14 @@ export class ValveAccessory {
 
     const httpRequest = new HttpRequest(this.config, this.log);
 
+    if (value===0) {
+      value = false;
+    }
+
+    if (value===1) {
+      value = true;
+    }
+
     if (value === true) {
       const standardDuration = this.config['StandardDuration'] as number;
 
