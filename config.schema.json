@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "Hozelock",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -9,7 +9,37 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "Hozelock Cloud Controller"
+      },
+      "HubId": {
+        "title": "HubId",
+        "type": "string",
+        "required": true,
+        "default": ""
+      },
+      "ControllerId": {
+        "title": "ControllerId",
+        "type": "string",
+        "required": true,
+        "default": ""
+      },
+      "StandardDuration": {
+        "title": "Standard duration in minutes",
+        "type": "number",
+        "required": true,
+        "default": 10
+      },
+      "UpdateTime": {
+        "title": "Time in secondes between updates",
+        "type": "number",
+        "required": true,
+        "default": 60
+      } ,
+      "Debug": {
+        "title": "View debug messages",
+        "type": "boolean",
+        "required": true,
+        "default": false
       }
     }
   }
