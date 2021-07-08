@@ -7,8 +7,11 @@
 This is a plugin for Hozelock Cloud Controller.
 
 # Support for
-1.0.2
+1.0.0
 * Turn on and off water
+
+1.1.0
+* Start of duration
 
 # Default config
 ```json

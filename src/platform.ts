@@ -4,18 +4,21 @@ import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 import { ObjectResult } from './types/ObjectResult';
 import { HttpRequest } from './utils/httprequest';
 import { ValveAccessory } from './accessories/ValveAccessory';
+import { CustomCharacteristic } from './CustomCharacteristic';
 
 export class HozelockHomebridgePlatform implements DynamicPlatformPlugin {
   public readonly Service: typeof Service = this.api.hap.Service;
   public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
-
   public readonly accessories: PlatformAccessory[] = [];
+  public customCharacteristic: CustomCharacteristic;
 
   constructor(
     public readonly log: Logger,
     public readonly config: PlatformConfig,
     public readonly api: API,
   ) {
+    this.customCharacteristic = new CustomCharacteristic(api);
+
     this.log.debug('Finished initializing platform:', this.config.name);
 
     this.api.on('didFinishLaunching', () => {

@@ -1,4 +1,4 @@
-import { Service, PlatformAccessory, Logger, PlatformConfig } from 'homebridge';
+import { Service, PlatformAccessory, Logger, PlatformConfig, CharacteristicValue } from 'homebridge';
 
 import { HozelockHomebridgePlatform } from '../platform';
 import { ObjectResult } from '../types/ObjectResult';
@@ -32,6 +32,12 @@ export class ValveAccessory {
 
     this.service.getCharacteristic(this.platform.Characteristic.ValveType)
       .onGet(this.handleValveTypeGet.bind(this));
+
+    this.service.getCharacteristic(this.platform.Characteristic.SetDuration).onSet(this.setDuration.bind(this));
+
+    this.service.getCharacteristic(this.platform.Characteristic.RemainingDuration).onGet(this.getRemainingDuration.bind(this));
+
+    this.service.addOptionalCharacteristic(this.platform.customCharacteristic.characteristic.KeepInFastMood);
   }
 
   handleActiveSet(value) {
@@ -57,6 +63,20 @@ export class ValveAccessory {
         this.log.debug('Triggered SET Active:', value);
       });
     }
+  }
+
+  setDuration(value: CharacteristicValue) {
+    const httpRequest = new HttpRequest(this.config, this.log);
+
+    const durarion = value as number;
+
+    httpRequest.WaterNow(this.accessory.context.device.hub.hubID, 0, durarion*60000).then(()=> {
+      this.log.debug('Triggered SET Duration:', value);
+    });
+  }
+
+  getRemainingDuration() {
+    return this.config['StandardDuration'] as number;
   }
 
   handleValveTypeGet() {

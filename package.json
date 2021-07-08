@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Hozelock Cloud Controller",
   "name": "homebridge-hozelock",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "HomeBridge Hozelock Cloud Controller Plugin.",
   "license": "Apache-2.0",
   "repository": {
